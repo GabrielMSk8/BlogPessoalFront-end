@@ -15,11 +15,16 @@
     background-color: aliceblue !important;
 }    
  
-img{
-    padding-bottom: 40px;
-    padding-top: 10px;
+.img{
+   
+    
     border-radius: 16px;
    
 
+}
+
+.Gridimg{
+    padding-bottom: 40px;
+    padding-top: 10px;
 }
 
