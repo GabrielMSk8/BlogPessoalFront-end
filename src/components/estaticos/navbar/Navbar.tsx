@@ -3,9 +3,21 @@ import MenuIcon from '@mui/icons-material/Menu';
 import React from "react"
 import './Navbar.css'
 import { Link } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import useLocalStorage from 'react-use-localstorage';
 
 
 function Navbar() {
+    const [token, setToken] = useLocalStorage('token');
+    let history = useNavigate();
+
+    function goLogout(){
+        setToken('')
+        alert('Usuário deslogado')
+        history('/login')
+    }
+
+    
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -21,24 +33,32 @@ function Navbar() {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link to="login" className='text-decorator-none'>
-                        <Button style={{ color: "white" }}>Inicio</Button>
+                        <Link to="/home" className='text-decorator-none'>
+                        <Button style={{ color: "white" }}>home</Button>
                             </Link>
                         </Typography>
+                        
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            <Button color="inherit">tema</Button>
+                        <Link to="/temas" className='text-decorator-none'>
+                            <Button style={{ color: "white" }}>tema</Button>
+                            </Link>
                         </Typography>
+                        
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            <Link to="cadastrousuario" className='text-decorator-none'>
-                                <Button style={{ color: "white" }}>cadastrar</Button>
+                            <Link to="/formularioTema" className='text-decorator-none'>
+                                <Button style={{ color: "white" }}>cadastrar tema</Button>
                             </Link>
                         </Typography>
 
 
-                        <Link to="login" className='text-decorator-none'>
-
+                        <Box mx={1} className='cursor' onClick= {goLogout}>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        
                             <Button style={{ color: "white" }}>Logout</Button>
-                        </Link>
+                         
+                            </Typography>
+
+                            </Box>
                     </Toolbar>
                 </AppBar>
             </Box>
